@@ -1,0 +1,17 @@
+.form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.form-row input.input-error {
+    border-color: red;
+    outline: none;
+}
+
+.error {
+    font-size: 0.8rem;
+    color: red;
+    margin: 0;
+}

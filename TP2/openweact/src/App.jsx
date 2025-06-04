@@ -4,53 +4,72 @@ import {useEffect} from "react";
 import {useState} from "react";
 import fetchWeather from "./api/fetchWeather.js";
 import MainWeather from "./components/MainWeather.jsx";
+import WeatherList from "./components/WeatherList.jsx";
+import Loader from "./components/ui/Loader.jsx";
+import fetchWeatherByCity from "./api/fetchWeatherByCity.js";
+import CitySelector from "./components/CitySelector.jsx";
 
 function App() {
-    const [coords, setCoords] = useState(null);
-    const [weatherData, setWeatherData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [cities, setCities] = useState([]);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const addCity = async (cityName) => {
+            const data = await fetchWeatherByCity(cityName);
+            setCities((prev) => [...prev, { name: cityName, data }]);
+            setSelectedIndex(cities.length );
+
+    }
 
     useEffect(() => {
         async function fetchLocation() {
-
-            try{
-                const {lat, lon} = await getLocation();
-                setCoords({lat, lon});
-                fetchWeather(lat, lon).then(data =>{
-                    setWeatherData(data);
-                    console.log("Weather data:", data);
-                })
+            try {
+                const { lat, lon } = await getLocation();
+                const localData = await fetchWeather(lat, lon);
+                setCities([{ name: localData.city.name, data: localData }]);
+                setLoading(false);
             } catch (error) {
-                console.error("Error fetching location:", error);
+                console.error('Erreur localisation :', error);
+                setLoading(false);
             }
         }
         fetchLocation();
-
-
     }, []);
 
     return (
-        <>
-            <div>
-                <h1>La météo près de chez vous :</h1>
+        <div>
+            <h1>La météo près de chez vous</h1>
 
-                <div className="card">
-                    {weatherData ? (
-                        <MainWeather
-                            weatherData={weatherData}
-                        />
+            <CitySelector onAddCity={addCity}/>
 
-
-                    ) : (
-                        <div>
-
-                            <p>Chargement des données météo...</p>
-                        </div>
+            {loading ? (
+                <Loader/>
+            ) : (
+                <>
+                    {cities.length > 0 && (
+                    <div className="tab-bar">
+                        {cities.map((city, index) => (
+                            <button
+                                key={index}
+                                className={selectedIndex === index ? 'active' : ''}
+                                onClick={() => setSelectedIndex(index)}
+                            >
+                                {city.name}
+                            </button>
+                        ))}
+                    </div>
                     )}
-                </div>
-
-            </div>
-
-        </>
+                    {cities[selectedIndex] && (
+                        <>
+                            <div className="card">
+                                <MainWeather weatherData={cities[selectedIndex].data}/>
+                            </div>
+                            <WeatherList weatherList={cities[selectedIndex].data.list}/>
+                        </>
+                    )}
+                </>
+            )}
+        </div>
     )
 }
 

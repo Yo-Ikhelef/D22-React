@@ -5,19 +5,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -37,19 +24,23 @@
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.tab-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
-.hour-card {
-  background-color: #f0f0f0;
-  color: #333;
-  padding: 12px 16px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.tab-bar button {
+  padding: 0.5rem 1rem;
+  background: #6e6d6d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+.tab-bar button.active {
+  background: #3498db;
+  color: white;
+}
+
+
