@@ -23,7 +23,7 @@ const CocktailCard = ({ cocktail }) => {
 
             {isFavoritesPage && (
                 <button onClick={handleRemoveFavorite} className="remove-button">
-                    Retirer
+                    Retirer des favoris
                 </button>
             )}
         </div>

@@ -7,7 +7,7 @@ const FavoritesPage = () => {
 
     return (
         <div className="favorites-page">
-            <h2>Mes Cocktails Favoris</h2>
+            <h2>Vos Cocktails Favoris</h2>
 
             {favorites.length === 0 ? (
                 <p>Aucun favori pour le moment. Ajoutez-en depuis une fiche cocktail !</p>

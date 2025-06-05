@@ -67,33 +67,47 @@ const CocktailDetail = () => {
 
     return (
         <div className="cocktail-detail">
-            <h2>{strDrink}</h2>
-            <img src={strDrinkThumb} alt={strDrink} className="main-image" />
+            <div className="cocktail-container">
+                {/* Colonne image */}
+                <div className="cocktail-image">
+                    <img src={strDrinkThumb} alt={strDrink} />
+                    <button onClick={toggleFavorite} className="cta-button">
+                        {isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+                    </button>
+                </div>
 
-            <p><strong>Catégorie :</strong> {strCategory}</p>
-            <p><strong>Verre :</strong> {strGlass}</p>
-            <p><strong>Type :</strong> {strAlcoholic}</p>
-            <button onClick={toggleFavorite} className="cta-button" style={{ margin: '16px 0' }}>
-                {isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
-            </button>
+                {/* Colonne texte */}
+                <div className="cocktail-content">
+                    <h2>{strDrink}</h2>
 
+                    <div className="cocktail-meta">
+                        <p><strong>Catégorie :</strong> {strCategory}</p>
+                        <p><strong>Verre :</strong> {strGlass}</p>
+                        <p><strong>Type :</strong> {strAlcoholic}</p>
+                    </div>
 
-            <h3>Ingrédients</h3>
-            <ul className="ingredients">
-                {ingredients.map((ing, index) => (
-                    <li key={index}>
-                        <img
-                            src={`https://www.thecocktaildb.com/images/ingredients/${ing.name}-Small.png`}
-                            alt={ing.name}
-                            className="ingredient-thumb"
-                        />
-                        {ing.measure} {ing.name}
-                    </li>
-                ))}
-            </ul>
+                    <h3>Instructions</h3>
+                    {strInstructionsFR ? (
+                    <p>{strInstructionsFR}</p>
+                    ) : (
+                        <p>Aucune instruction disponible.</p>
+                    )}
 
-            <h3>Instructions</h3>
-            <p>{strInstructionsFR}</p>
+                    <h3>Ingrédients</h3>
+                    <ul className="ingredients">
+                        {ingredients.map((ing, index) => (
+                            <li key={index}>
+                                <img
+                                    src={`https://www.thecocktaildb.com/images/ingredients/${ing.name}-Small.png`}
+                                    alt={ing.name}
+                                    className="ingredient-thumb"
+                                />
+                                {ing.measure} {ing.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 };
