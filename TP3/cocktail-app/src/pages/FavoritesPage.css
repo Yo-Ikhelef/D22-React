@@ -1,0 +1,15 @@
+.favorites-page {
+    padding: 32px;
+}
+
+.favorites-page h2 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.cocktail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+}

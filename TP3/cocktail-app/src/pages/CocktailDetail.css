@@ -1,0 +1,38 @@
+.cocktail-detail {
+    padding: 32px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cocktail-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.main-image {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto 24px auto;
+    border-radius: 12px;
+}
+
+.ingredients {
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+}
+
+.ingredients li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.ingredient-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
