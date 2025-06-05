@@ -68,7 +68,6 @@ const CocktailDetail = () => {
     return (
         <div className="cocktail-detail">
             <div className="cocktail-container">
-                {/* Colonne image */}
                 <div className="cocktail-image">
                     <img src={strDrinkThumb} alt={strDrink} />
                     <button onClick={toggleFavorite} className="cta-button">
@@ -76,7 +75,6 @@ const CocktailDetail = () => {
                     </button>
                 </div>
 
-                {/* Colonne texte */}
                 <div className="cocktail-content">
                     <h2>{strDrink}</h2>
 
